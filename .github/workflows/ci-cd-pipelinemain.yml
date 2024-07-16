@@ -1,0 +1,24 @@
+import unittest
+from blockchain import Blockchain
+
+class TestBlockchain(unittest.TestCase):
+
+    def test_blockchain_creation(self):
+        blockchain = Blockchain()
+        self.assertEqual(len(blockchain.chain), 1)
+        self.assertEqual(blockchain.chain[0].data, "Genesis Block")
+
+    def test_adding_block(self):
+        blockchain = Blockchain()
+        blockchain.add_block("Test Block 1")
+        self.assertEqual(len(blockchain.chain), 2)
+        self.assertEqual(blockchain.chain[1].data, "Test Block 1")
+
+    def test_is_chain_valid(self):
+        blockchain = Blockchain()
+        blockchain.add_block("Test Block 1")
+        blockchain.add_block("Test Block 2")
+        self.assertTrue(blockchain.is_chain_valid())
+
+if __name__ == '__main__':
+    unittest.main()
